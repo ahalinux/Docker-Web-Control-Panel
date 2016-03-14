@@ -4,4 +4,5 @@
 2. Clone项目后，运行npm install
 3. 将脚本./app/controllers/command/dockerm.sh文件，硬链接到系统/usr/local/bin/下，如：ln (-f) dockerm.sh /usr/local/bin/
 4. 运行程序node app.js
-5. Good Lucky ~
+5. 初次进入系统，需先注册admin管理用户，并赋予其管理权限，如：db.users.update({"_id" : ObjectId("...")},{$set: {role: 51}})
+6. Good Lucky ~
