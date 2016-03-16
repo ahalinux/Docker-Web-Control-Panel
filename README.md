@@ -1,4 +1,4 @@
-# Dcoker Web Control Panel
+# Docker Web Control Panel
 
 ## 运行环境 ##
 1. 建议运行在Ubuntu 14.04 Server下，Node版本不低于0.12.10，Docker版本1.9.1以上。
