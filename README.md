@@ -1,7 +1,7 @@
 # Docker Web Control Panel
 
 ## 运行环境 ##
-1. 建议运行在Ubuntu 14.04 Server下，Node版本不低于0.12.10，Docker版本1.9.1以上。
+  建议运行在Ubuntu 14.04 Server下，Node版本不低于0.12.10，Docker版本1.9.1以上。
 
 ## 配置说明  ##
 1. 在Clone项目后，将主目录下package.json文件的"version"字段中，添加"private": true, 注意结尾的逗号。
