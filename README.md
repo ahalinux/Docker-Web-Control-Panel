@@ -6,13 +6,15 @@
 ## 配置说明  ##
 1. 在Clone项目后，将主目录下package.json文件的"version"字段中，添加"private": true, 注意结尾的逗号。
 
-2. 在命令函运行npm install进行modules安装
+2. 命令行运行npm install进行modules安装
 
-3. 将./app/controllers/command/dockerm.sh的Bash脚本文件，硬链接到系统/usr/local/bin/下，如有跨文件系统问题，也可复制运行。
+3. 命令行运行bower install bootstrap，使其自动在public/libs目录下安装匹配版本的bootstrap和jquery
 
-4. 开启Docker Remote API，编辑/etc/default/docker，加入：DOCKER_OPTS="-H 0.0.0.0:2376 -H unix:///var/run/docker.sock"
+4. 将./app/controllers/command/dockerm.sh的Bash脚本文件，硬链接到系统/usr/local/bin/下，如有跨文件系统问题，也可复制运行。
 
-5. 运行程序node app.js
+5. 开启Docker Remote API，编辑/etc/default/docker，加入：DOCKER_OPTS="-H 0.0.0.0:2376 -H unix:///var/run/docker.sock"
+
+6. 运行程序node app.js
 
 ## 初次使用 ##
 1. 系统运行后，请先注册admin用户并赋予管理权限，如：db.users.update({"_id" : ObjectId("admin的ID字符串")},{$set: {role: 51}})
