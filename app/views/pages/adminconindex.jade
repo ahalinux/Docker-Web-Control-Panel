@@ -1,0 +1,75 @@
+extends ../layout
+block content
+    .container
+        .row
+            form(method='GET', action='/admin/super/superconindex')
+                .input-group.col-sm-4.pull-right
+                    input.form-control(placeholder="请输入容器名", type='text', name='q', autofocus)
+                    span.input-group-btn
+                        button.btn.btn-primary(type='submit') 搜索
+                        button.btn.btn-default(href='/admin/super/superconindex') 清除
+        <br>
+        .row
+            .panel.panel-default
+                .panel-heading
+                    .panel-titlePanel
+                        h3 容器列表
+                        <h5><span class="label label-primary">WARNING</span>&nbsp;&nbsp;容器按创建时间排序</h5>
+                .panel-body
+                    table.table.table-hover.table-bordered
+                        tr
+                            td 容器名称
+                            td 拥有者
+                            td 基础镜像
+                            td 创建时间
+                            td 停止
+                            td 删除
+                        each con in acontainers
+                            tr(class="item-id-#{con.id}")
+                                td #{con.hostname}
+                                td #{con.user.name}
+                                td #{con.image}
+                                td #{moment(con.meta.createAt).format('MM/DD/YYYY - h:mm:ss a')}
+                                td: button.btn.btn-default.stoped.stopcontainered(type="button", data-id="#{con.id}") 停止
+                                td: button.btn.btn-primary.delcontainered(type="button", data-id="#{con.id}") 删除
+                    ul.pagination
+                        - for (var i=0; i<totalPage; i++) {
+                            - if (currentPage == (i+1)) {
+                                li.active
+                                    span #{currentPage}
+                            - }
+                            - else {
+                                li
+                                    a(href='/admin/super/superconindex?#{query}&p=#{i}') #{i + 1}
+                            - }
+                        - }
+        .row
+            .panel.panel-default
+                .panel-heading
+                    .panel-titlePanel
+                        h3 用户列表
+                        <h5><span class="label label-warning">WARNING</span>&nbsp;&nbsp;起停后请刷新页面</h5>
+                .panel-body
+                    table.table.table-hover.table-bordered
+                        tr
+                            td 用户
+                            td 权限
+                            td 创建时间
+                            td 状态
+                            td 操作
+                            td 操作
+                        each usr in auser
+                            tr
+                                td #{usr.name}
+                                td #{parsestr.parseuserrole(usr.role)}
+                                td #{moment(usr.meta.createAt).format('MM/DD/YYYY')}
+                                td #{parsestr.parseuserstatus(usr.status)}
+                                td: button.btn.btn-default.startusered(type="button", data-id="#{usr._id}") 启用
+                                td: button.btn.btn-warning.stopusered(type="button", data-id="#{usr._id}") 停用
+        <br>
+        <br>
+        <br>
+    script(src="/js/stopcontainer.js")
+    script(src="/js/delcontainer.js")
+    script(src="/js/stopuser.js")
+    script(src="/js/startuser.js")

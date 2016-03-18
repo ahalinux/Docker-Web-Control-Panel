@@ -1,0 +1,110 @@
+extends ../layout
+block content
+    .container
+        .row
+            //-.col-md-6
+                img.imgtitle(src="/images/docker1.png")
+            //-.col-md-6
+            blockquote
+                h5
+                    p <strong>此版本 ( ver1.0.3 ) 只作展示使用</strong>
+                    footer For Admin, Please mail to: <cite title="Source Title">&nbsp;<a href="mailto:575713113@qq.com">Calverti</a></cite>
+        .row
+            .col-md-6
+                .panel.panel-info
+                    .panel-heading
+                        .panel-title
+                            h4 系统信息
+                    .panel-body
+                        table.table.table-hover.table-bordered.text-center
+                            tr
+                                td.col-md-3 系统类型
+                                td #{system.osName}
+                            tr
+                                td.col-md-3 网络状态
+                                td #{system.networkStatus}
+                            tr
+                                td.col-md-3 内存用量
+                                td #{system.memStatus}
+                            tr
+                                td.col-md-3 处理负载
+                                td #{system.loadAverage}
+                            tr
+                                td.col-md-3 磁盘用量
+                                td #{system.diskAverge}
+            .col-md-6
+                .panel.panel-info
+                    .panel-heading
+                        .panel-title
+                            h4 引擎信息
+                    .panel-body
+                        table.table.table-hover.table-bordered.text-center
+                            tr
+                                td.col-md-3 服务版本
+                                td #{system.dockerVer}
+                            tr
+                                td.col-md-3 镜像数量
+                                td #{system.dockerImg}
+                            tr
+                                td.col-md-3 容器状态
+                                td 已运行： #{system.dockerCon} &nbsp;&nbsp;&nbsp;&nbsp; 未运行： #{system.dockernCon}
+                            tr
+                                td.col-md-3 文件系统
+                                td #{system.dockerFs}
+                            tr
+                                td.col-md-3 内核版本
+                                td #{system.kenVer}
+        .row
+            .col-md-6
+                .panel.panel-default
+                    .panel-heading
+                        .panel-title
+                            h4 登录管理
+                    .panel-body
+                        form.form-inline(method="POST", action="/user/signin")
+                            .form-group
+                                label.sr-only(for="inputUser") 用户名
+                                input#inputUser.form-control(name="user[name]", type="text", placeholder="User")
+                                | &nbsp;
+                            .form-group
+                                label.sr-only(for="inputPassword") 密码
+                                input#inputPassword.form-control(name="user[password]", type="password", placeholder="Password")
+                                | &nbsp;
+                            button.btn.btn-primary(type="submit") 登录
+                    .panel-footer
+                        address
+                        strong 新用户请在页底注册&nbsp;
+                        p <h6><cite title="Source Title">Q&A Please mail to:&nbsp;<a href="mailto:575713113@qq.com">Calverti</a></cite></h6>
+                        //-a(href="mailto:575713113@qq.com") 575713113@qq.com
+            .col-md-6
+                .panel.panel-default
+                    .panel-heading
+                        .panel-title
+                            h4 最近日志
+                    .panel-body
+                        .label.label-info 2016/03/14
+                        h5 已知bug全部修正，打个版本号 Called '1.0.0'
+                        .label.label-default 2016/03/13
+                        h5 对首页childprecess异步封装，重写dockerm自定义命令
+                        .label.label-default 2016/03/12
+                        h5 调整部分jade页面结构，fix bug
+                        .label.label-default 2016/03/10
+                        h5 为admin容器增加分页功能，及search功能
+                        .label.label-default 2016/03/07
+                        h5 为user容器增加分页功能，fix bug
+                        .label.label-default 2016/03/05
+                        h5 为用户增加停用标志位，fix del container bug
+                        //-.label.label-default 2016/03/04
+                        //-h5 增加user容器数量限制功能，调整admin界面
+                        //-.label.label-default 2016/03/01
+                        //-h5 重写容器管理模块，封装子进程
+                        //-.label.label-default 2016/02/15
+                        //-h5 ver 0.8.0 加入用户注册功能，fix bug
+                        h5 ... ...
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+

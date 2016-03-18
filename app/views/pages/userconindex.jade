@@ -1,0 +1,74 @@
+extends ../layout
+block content
+    .container
+        //-.row
+            form(method='GET', action='/admin/user/userconindex')
+                .input-group.col-sm-4.pull-right
+                    input.form-control(type='text', name='q')
+                    span.input-group-btn
+                        button.btn.btn-default(type='submit') 容器搜索
+        <br>
+        .row
+            .panel.panel-default
+                .panel-heading
+                    .panel-titlePanel
+                        h4 新增容器
+                .panel-body
+                    form.form-horizontal(method="post", action="/admin/user/concreate", enctype="application/x-www-form-urlencoded")
+                        .form-group
+                            label.control-label.col-sm-2(for="inputImage") 基于镜像
+                            .col-sm-10
+                                //-input#inputImage.form-control(type="text", name="createcon[image]", value=createcon.image)
+                                input#inputImage.form-control(type="text", name="createcon[image]", value="ubuntu", readonly)
+                        .form-group
+                            label.control-label.col-sm-2(for="inputHostname") 容器内主机名
+                            .col-sm-10
+                                input#inputHostname.form-control(placeholder="输入5位字母数字组合", type="text", pattern="[A-Za-z0-9]{5}", name="createcon[hostname]", value=createcon.hostname, autofocus)
+                        .form-group
+                            label.control-label.col-sm-2(for="inputCmd") 运行命令
+                            .col-sm-10
+                                input#inputCmd.form-control(type="text", name="", value="(功能测试中)", readonly)
+                        .form-group
+                            .col-sm-10
+                                button.btn.btn-default.btn-success(type="submit") 启动并运行
+                .panel-footer
+                    .label.label-success &nbsp;&nbsp;WARNING&nbsp;&nbsp;
+                    | &nbsp;&nbsp;普通用户最多创建5个容器
+        .row
+            .panel.panel-default
+                .panel-heading
+                    .panel-titlePanel
+                        h4 容器列表
+                        .label.label-primary &nbsp;&nbsp;#{parsestr.parseuserrole(user.role)}&nbsp;&nbsp;
+                        | &nbsp;&nbsp;#{user.name}
+                .panel-body
+                    table.table.table-hover.table-bordered
+                        tr.utrhead
+                            td 容器主机名
+                            td 基础镜像
+                            td 创建时间
+                            td 停止
+                            td 删除
+                        each item in ucontainers
+                            tr.utrbody(class="item-id-#{item.id}")
+                                td #{item.hostname}
+                                td #{item.image}
+                                td #{moment(item.meta.createAt).format('MM/DD/YYYY - h:mm:ss a')}
+                                td: button.btn.panel-default.stopcontainered(type="button", data-id="#{item.id}") 停止
+                                td: button.btn.btn-primary.delcontainered(type="button", data-id="#{item.id}") 删除
+                    ul.pagination
+                        - for (var i=0; i<totalPage; i++) {
+                            - if (currentPage == (i+1)) {
+                                li.active
+                                    span #{currentPage}
+                            - }
+                            - else {
+                                li
+                                    a(href='/admin/user/userconindex?#{query}&p=#{i}') #{i + 1}
+                            - }
+                        - }
+        <br>
+        <br>
+        <br>
+    script(src="/js/stopcontainer.js")
+    script(src="/js/delcontainer.js")

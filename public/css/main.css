@@ -1,0 +1,22 @@
+tr.utrhead
+{
+    font-size:11pt;
+    font-weight:bold;
+    text-align:center
+}
+
+tr.utrbody
+{
+    text-align:center
+}
+
+.consubmit
+{
+    margin:0 auto;
+}
+
+.imgtitle
+{
+    width: 123px;
+    height: 45px;
+}
